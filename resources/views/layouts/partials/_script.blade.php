@@ -7,6 +7,8 @@
     <!-- Custom scripts for all pages-->
     <script src="{{ asset('js/sb-admin.min.js')}}"></script>
 
+    
+
 </body>
 
 </html>

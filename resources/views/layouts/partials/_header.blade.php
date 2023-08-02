@@ -32,6 +32,10 @@
     <!-- Custom styles for this template-->
     <link href="{{ asset('css/sb-admin.min.css') }}" rel="stylesheet">
     <script src="https://kit.fontawesome.com/0371f381a6.js" crossorigin="anonymous"></script>
+
+    <!-- This is CDN of Sweet alert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     
     
 </head>

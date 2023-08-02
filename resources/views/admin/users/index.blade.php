@@ -18,10 +18,10 @@
                 <thead>
                   <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Action</th>
+                    <th scope="col">Role</th>
                     <th scope="col">Name</th>
                     <th scope="col">Email</th>
-                    <th scope="col">Role</th>
+                    <th scope="col">Action</th> 
                   </tr>
                 </thead>
                 <tbody>
@@ -31,20 +31,19 @@
                     <tr>
                       <th scope="row">{{ $index + 1}}</th>
                       <td>
-                          <a href="{{ route('users.edit',$user->id) }}" class="btn btn-sm btn-warning">Edit</a>
-                          <button onclick="confirmDelete({{ $user->id }})" class="btn btn-sm btn-danger">Delete</button>
+                        @if($user->role == 1)
+                        <span class="badge badge-danger">Administrator</span>
+                      @elseif($user->role == 2)
+                        <span class="badge badge-warning">Supervisor</span>
+                      @else
+                        <span class="badge badge-secondary">Trainee</span>
+                      @endif
                       </td>
                       <td>{{ $user->name }}</td>
                       <td>{{ $user->email }}</td>
                       <td>
-                        @if($user->role == 1)
-                          <span class="badge badge-danger">Administrator</span>
-                        @elseif($user->role == 2)
-                          <span class="badge badge-warning">Supervisor</span>
-                        @else
-                          <span class="badge badge-secondary">Trainee</span>
-                        @endif
-                        
+                        <a href="{{ route('users.edit',$user->id) }}" class="btn btn-sm btn-warning">Edit</a>
+                          <button onclick="confirmDelete({{ $user->id }})" class="btn btn-sm btn-danger">Delete</button>
                       </td>
                     </tr>
                     @endforeach
@@ -60,4 +59,6 @@
               @endif
         </div>
     </div>
+
+    
 @endsection
