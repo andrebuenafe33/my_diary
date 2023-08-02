@@ -1,0 +1,23 @@
+
+        #wrapper .sidebar{
+            width: 20%!important;
+        }
+        #wrapper main{
+            width: 80%!important;
+            position: static;
+            background: #f8f9fc;
+        }
+        .sticky-footer{
+            position: absolute;
+            bottom: 0;
+            width: 80%;
+        }
+        #wrapper #content-wrapper{
+            height: 100vh;
+        }
+
+        .sidebar-divider {
+            border: 2px solid floralwhite;
+            margin: 2px 0;
+        }
+        
