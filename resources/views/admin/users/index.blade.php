@@ -1,6 +1,25 @@
 @extends('admin.admin')
 
 @section('content')
+
+
+<style>
+/* Define the initial state of the button */
+.btn {
+  padding: 5px 10px;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+/* Define the hover state */
+.btn:hover {
+  transform: scale(1.10);
+}
+</style>
+
+
     <div class="card">
         <div class="card-header">
             <div class="row">
@@ -14,7 +33,7 @@
             </div>
         </div>
         <div class="card-body p-0">
-            <table class="table table-sm table-hover mb-0">
+            <table class="table table-sm table-hover table-striped mb-0" id="myDataTable">
                 <thead>
                   <tr>
                     <th scope="col">#</th>
@@ -42,8 +61,8 @@
                       <td>{{ $user->name }}</td>
                       <td>{{ $user->email }}</td>
                       <td>
-                        <a href="{{ route('users.edit',$user->id) }}" class="btn btn-sm btn-warning">Edit</a>
-                          <button onclick="confirmDelete({{ $user->id }})" class="btn btn-sm btn-danger">Delete</button>
+                        <a href="{{ route('users.edit',$user->id) }}" class="btn btn-sm btn-warning fas fa-edit"></a>
+                          <button onclick="confirmDelete({{ $user->id }})" class="btn btn-sm btn-danger fas fa-trash"></button>
                       </td>
                     </tr>
                     @endforeach
@@ -52,6 +71,7 @@
                   @endif()
                 </tbody>
               </table>
+              
               @if(isset($user_name))
                 <div class="alert alert-success mb-0">
                   <strong>Success!</strong> {{ $user_name }}'s information has been successfully updated.
@@ -59,6 +79,6 @@
               @endif
         </div>
     </div>
-
-    
+    {{-- {{$users->links()}} --}}
+    @include('admin.users.partials._scripts')
 @endsection

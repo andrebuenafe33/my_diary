@@ -17,9 +17,9 @@
                             <label for="inputEmail4">Role</label>
                             <select name="role" id="role" class="form-control">
                                 <option value="" disabled>Select a Role</option>
-                                <option value="1" {{ $user->role === 1 ? 'selected' : '' }}>Administrator</option>
-                                <option value="2" {{ $user->role === 2 ? 'selected' : '' }}>Supervisor</option>
-                                <option value="3" {{ $user->role === 3 ? 'selected' : '' }}>Trainee</option>
+                                <option value="1" {{ $user->role == 1 ? 'selected' : '' }}>Administrator</option>
+                                <option value="2" {{ $user->role == 2 ? 'selected' : '' }}>Supervisor</option>
+                                <option value="3" {{ $user->role == 3 ? 'selected' : '' }}>Trainee</option>
                             </select>
                         </div>
                         <div class="form-group col-md-6">

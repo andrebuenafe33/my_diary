@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Documentation;
+use Illuminate\Support\Facades\Storage;
 
 class DocumentationsController extends Controller
 {
@@ -15,7 +16,8 @@ class DocumentationsController extends Controller
      */
     public function index()
     {
-        return view('admin.documentations.index');
+        $docs = Documentation::latest()->get();
+        return view('admin.documentations.index')->with('docs', $docs);
     }
 
     /**
@@ -37,7 +39,7 @@ class DocumentationsController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'doc_img' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Example image validation rules
+            'doc_img' => 'required|image|mimes:jpeg,png,jpg,gif,avif,webp|max:5048', // Example image validation rules
             'caption' => 'required|string',
         ]);
 
@@ -57,7 +59,8 @@ class DocumentationsController extends Controller
             'author_id' => $userId,
            ]);
 
-           return view('admin.documentations.index');
+        //    return view('admin.documentations.index')->with('success', 'You Uploaded a Picture Successfully!');
+           return view('admin.documentations.index')->with('uploadSuccess','The image '.$fileName.' successfully uploaded!');
         //    return redirect()->route('admin.documentations.index')->with('success', 'Document uploaded successfully!');
         }
     }

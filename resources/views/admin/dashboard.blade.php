@@ -39,4 +39,15 @@
         </div>
     </div>
 </div>
+
+<script>
+    $(document).ready(function() {
+        // Animate progress bars on page load
+        $('.progress-bar').each(function() {
+            var progressValue = $(this).attr('aria-valuenow');
+            $(this).animate({ width: progressValue + '%' }, 2000); // Animation duration in milliseconds
+        });
+    });
+    </script>
+
 @endsection

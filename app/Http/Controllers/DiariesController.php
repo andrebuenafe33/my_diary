@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Diary;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DiariesController extends Controller
 {
@@ -14,7 +16,29 @@ class DiariesController extends Controller
      */
     public function index()
     {
-        return view('admin.diaries.index');
+
+        $diaries = Diary::all();
+        return view('admin.diaries.index', compact('diaries'));
+        // if(request()->ajax())
+        // {
+        //     if(Auth::user()->role == 1){
+        //         $diaries = Diary::all();
+        //         return $this->generateDatatables($diaries);
+        //     } else if(Auth::user()->role == 2){
+        //         $supervisorId = Auth::user()->id;
+
+        //         $diaries = Diary::where(function ($query) use ($supervisorId) {
+        //             $query->where('supervisor_id', $supervisorId)
+        //                 ->orWhere('author_id', $supervisorId);
+        //         })->get();
+        //         return $this->generateDatatables($diaries);
+        //     } else {
+        //         $diaries = Diary::where('author_id','=',Auth::user()->id)->get();
+        //         return $this->generateDatatables($diaries);
+        //     }
+        // };
+
+        // return view('admin.diaries.index');
     }
 
     /**
@@ -24,7 +48,8 @@ class DiariesController extends Controller
      */
     public function create()
     {
-        //
+        $supervisors = User::where('role','=',2)->get();
+        return view('admin.diaries.create')->with('supervisors',$supervisors);
     }
 
     /**
@@ -35,7 +60,36 @@ class DiariesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+          try {
+            $validatedData = $request->validate([
+                'plantoday' => 'required',
+                'eod' => 'required',
+                'roadblocks' => 'required',
+                'summary' => 'required',
+                'plantomorrow' => 'required',
+                'supervisor' => 'required'
+            ]);
+        
+            $diary = Diary::create([
+                'plan_today' => $request->plantoday,
+                'end_today' => $request->eod,
+                'roadblocks' => $request->roadblocks,
+                'summary' => $request->summary,
+                'plan_tomorrow' => $request->plantomorrow,
+                'author_id' => Auth::user()->id,
+                'supervisor_id' => $request->supervisor,
+                'status' => 0
+            ]);
+        
+            $diaries = Diary::all();
+        
+            
+            $diary = Diary::with(['author', 'supervisor'])->find($diary->id);            
+            return view('admin.diaries.index')->with('diaries',$diaries);
+            // return redirect()->route('success')->with('success', 'Data saved successfully!');
+        } catch (ValidationException $e) {
+            return redirect()->back()->withErrors($e->errors())->withInput();
+        }
     }
 
     /**
@@ -57,7 +111,9 @@ class DiariesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $diary = Diary::findOrFail($id);
+
+        return view('admin.diaries.edit')->with('diary',$diary);
     }
 
     /**
@@ -69,7 +125,38 @@ class DiariesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try {
+            $validatedData = $request->validate([
+                'plantoday' => 'required',
+                'eod' => 'required',
+                'roadblocks' => 'required',
+                'summary' => 'required',
+                'plantomorrow' => 'required',
+                'supervisor' => 'required'
+            ]);
+
+            $diary = Diary::findOrFail($id);
+            // dd($request->input('todays-plan'));
+            $diary->update([
+                'plan_today' => $request->plantoday,
+                'end_today' => $request->eod,
+                'roadblocks' => $request->roadblocks,
+                'summary' => $request->summary,
+                'plan_tomorrow' => $request->plantomorrow,
+                'author_id' => Auth::user()->id,
+                'supervisor_id' => $request->supervisor,
+                'status' => 0
+            ]);
+
+            $diaries = Diary::all();
+
+            return view('admin.diaries.index')->with([
+                'diaries'=>$diaries
+            ]);
+            // return redirect()->route('success')->with('success', 'Data saved successfully!');
+        } catch (ValidationException $e) {
+            return redirect()->back()->withErrors($e->errors())->withInput();
+        }
     }
 
     /**
@@ -80,6 +167,24 @@ class DiariesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $deleteDiary = Diary::findOrFail($id);
+        
+        $deleteDiary->destroy($id);
+        
+        if($deleteDiary){
+            return response()->json(['message' => 'Diary deleted successfully']);
+        } else {
+            return response()->json(['error' => 'Deletion failed!']);
+        }
     }
+
+
+//     public function getDiaries()
+// {
+//     $diaries = Diary::all(); // Replace with your actual model and query
+//     return response()->json($diaries);
+// }
 }
+
+
+

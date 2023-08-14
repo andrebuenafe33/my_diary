@@ -23,15 +23,18 @@
     <!-- Divider -->
     <hr class="sidebar-divider">
 
-    <!-- Nav Item - Charts -->
+    <!-- Nav Item - Diaries -->
     <li class="nav-item 
         {{ request()->is('diaries') ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('diaries.index')}}">
             <i class="fas fa-solid fa-book-open"></i>
             <span>Diaries</span></a>
     </li>
+    
+     <!-- Divider -->
+     <hr class="sidebar-divider">
 
-    <!-- Nav Item - Tables -->
+    <!-- Nav Item - Documentations -->
     <li class="nav-item 
         {{ request()->is('documentations') ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('documentations.index')}}">
@@ -39,10 +42,11 @@
             <span>Documentations</span></a>
     </li>
 
+    @if(Session::get('USERROLE') == 1 || Session::get('USERROLE') == 2)
      <!-- Divider -->
      <hr class="sidebar-divider">
 
-     <!-- Nav Item - Charts -->
+     <!-- Nav Item - Approval-Requests -->
      <li class="nav-item 
         {{ request()->is('approval-requests') ? 'active' : '' }}">
          <a class="nav-link" href="{{ route('approval-requests.index')}}">
@@ -50,11 +54,13 @@
              <span>Approval Requests</span>
         </a>
      </li>
+     @endif
 
+     @if(Session::get('USERROLE') == 1)
       <!-- Divider -->
     <hr class="sidebar-divider">
 
-    <!-- Nav Item - Charts -->
+    <!-- Nav Item - Users -->
     <li class="nav-item 
         {{ request()->is('users') ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('users.index')}}">
@@ -62,5 +68,8 @@
             <span>Users</span>
         </a>
     </li>
+     <!-- Divider -->
+     <hr class="sidebar-divider">
+    @endif
 </ul>
 <!-- End of Sidebar -->

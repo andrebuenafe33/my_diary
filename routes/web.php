@@ -1,10 +1,12 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\ApprovalRequestsController;
 use App\Http\Controllers\DiariesController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\DocumentationsController;
-use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -17,14 +19,24 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Auth::routes();
 Route::get('/', function () {
     return view('layouts.welcome');
 });
 
-Auth::routes();
 
-Route::get('/admin', [App\Http\Controllers\HomeController::class, 'index'])->name('admin');
-Route::resource('/users', UsersController::class);
-Route::resource('/documentations', DocumentationsController::class);
-Route::resource('/diaries', DiariesController::class);
-Route::resource('/approval-requests', ApprovalRequestsController::class);
+ // This is from not-authorized.blade.php //  
+Route::get('/not-authorized', function(){
+    return view('auth.not-authorized');
+})->name('not-authorized');
+
+// This is the middleware to check the route access if not log in, user will not directly access the pages //
+Route::middleware('checkRouteAccess')->group(function(){
+    Route::get('/admin', [App\Http\Controllers\HomeController::class, 'index'])->name('admin');
+    Route::resource('/users', UsersController::class);
+    Route::resource('/documentations', DocumentationsController::class);
+    Route::resource('/diaries', DiariesController::class);
+    Route::resource('/approval-requests', ApprovalRequestsController::class);
+});
+
+Route::get('diaries/get', 'DiariesController@getDiaries')->name('diaries.get');

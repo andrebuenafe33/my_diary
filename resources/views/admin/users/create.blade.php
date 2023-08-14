@@ -2,10 +2,11 @@
 
 @section('content')
     <div class="card">
+        <div class="card-row p-2 mb-4">
         <div class="card-header">
             New User
         </div>
-        <form action="{{route('users.store')}}" method="POST">
+        <form action="{{route('users.store')}}" id="users-save" method="POST">
             @csrf
             <div class="card-body">
                     <div class="form-row">
@@ -42,9 +43,12 @@
                     @endif
             </div>
             <div class="card-footer">
-                <button type="submit" class="btn btn-success btn-sm">Save</button>
+                  {{-- <input type="submit" value="Save" id="save_btn" class="btn btn-outline-success btn-sm"> --}}
+                <button type="submit" id="save_btn"class="btn btn-success btn-sm">Save</button>
                 <a href="{{route('users.index')}}" class="btn btn-secondary btn-sm">Cancel</a>
             </div>
         </form>
     </div>
+    </div>
+
 @endsection

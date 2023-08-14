@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class HomeController extends Controller
 {
@@ -23,6 +25,13 @@ class HomeController extends Controller
      */
     public function index()
     {
+        if (Auth::check()) {
+            $userName = Auth::user()->name;
+            $userRole = Auth::user()->role;
+            
+            Session::put('USERNAME', $userName);
+            Session::put('USERROLE', $userRole);
+        }
         return view('admin.dashboard');
     }
 }
