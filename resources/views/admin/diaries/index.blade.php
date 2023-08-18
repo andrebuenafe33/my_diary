@@ -58,7 +58,7 @@
             </div>
         </div>
         <div class="card-body">
-            <table class="table table-sm table-striped" id="myDataTable">
+            <table class="table table-sm table-striped" id="myTable">
                 <thead>
                     <tr>
                         <th scope="col">#</th>
