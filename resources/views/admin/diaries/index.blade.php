@@ -73,7 +73,8 @@
                             <td>{{ $diary->id }}</td>
                             <td>
                                 <!-- Add any action buttons or links here -->
-                                <a href="{{ route('diaries.edit', $diary->id) }}" class="btn btn-sm btn-primary fas fa-edit"></a>
+                                <a href="{{ route('diaries.show', $diary->id) }}" class="btn btn-sm btn-primary fas fa-eye"></a>
+                                <a href="{{ route('diaries.edit', $diary->id) }}" class="btn btn-sm btn-warning fas fa-edit"></a>
                                 <button onclick="confirmDelete({{ $diary->id }})" class="btn btn-sm btn-danger fas fa-trash"></button>
                             </td>
                             <td> 

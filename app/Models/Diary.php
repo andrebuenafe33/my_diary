@@ -29,6 +29,7 @@ class Diary extends Model
         'plan_tomorrow',
         'roadblocks',
         'summary',
-        'status'
+        'status',
+        
     ];
 }

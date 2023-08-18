@@ -18,46 +18,7 @@
     <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap4.min.js"></script>
    <script> let table = new DataTable('#myDataTable'); </script>
    
-   <script>
-        function confirmDelete(userId) {
-            Swal.fire({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
-                showCancelButton: true,
-                imageUrl: "{{ asset("images/bin.png") }}",
-                imageHeight: 200,
-                confirmButtonColor: '#d33',
-                cancelButtonColor: '#005',
-                confirmButtonText: 'Yes, delete it!'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    // Send an AJAX request to delete the user
-                    axios.delete(`/users/${userId}`)
-                        .then(response => {
-                            // Handle the success response from the server
-                            Swal.fire(
-                                'Deleted!',
-                                'Your file has been deleted.',
-                                'success'
-                            );
-                            // Optionally, you can update the UI or reload the page after successful deletion
-                            setTimeout(function(){
-                                location.reload();
-                            }, 2000);
-                             
-                        }) 
-                        .catch(error => {
-                            // Handle the error response from the server
-                            Swal.fire(
-                                'Error!',
-                                'An error occurred while deleting the user.',
-                                'error'
-                            );
-                        });
-                }
-            });
-        }
-    </script>
+   
 
     {{-- TinyMCE Script --}}
     <script>

@@ -65,3 +65,19 @@
 div.dataTables_wrapper div.dataTables_length select {
     width:50% !important;
 }
+
+/* Custom CSS from Sidebar Hover */
+/* Define the initial state of the navigation items */
+.nav-item {
+    transition: background-color 0.3s ease;
+}
+
+/* Define the hover state */
+.nav-item:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Define the active state */
+.nav-item.active {
+    background-color: rgba(255, 255, 255, 0.2);
+}

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Diary;
 use App\Models\User;
+use Error;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -100,7 +101,25 @@ class DiariesController extends Controller
      */
     public function show($id)
     {
-        //
+       
+        $diary = Diary::findOrFail($id);
+        return view('admin.diaries.show', compact('diary'));
+        // $diary = Diary::where('id','=',$id)->first();
+        // $user = User::where('id','=', $diary->author_id)->first();
+        // $date = $user->created_at->format('M d, Y');
+      
+        // $name = $user->name;
+        // $sup = User::where('id','=',$diary->supervisor_id)->first();
+        // $supervisor = $sup->name;
+        // $title = 'EOD Report by ' . $name . ' on ' . $date;
+        // $diary_details = [
+        //     'diary' => $diary,
+        //     'name' => $name,
+        //     'title' => $title,
+        //     'supervisor' => $supervisor,
+        //     // 'signature' => $sup->signature
+        // ];
+        // return view('admin.diaries.show')->with('diary',$diary_details);
     }
 
     /**
@@ -184,7 +203,12 @@ class DiariesController extends Controller
 //     $diaries = Diary::all(); // Replace with your actual model and query
 //     return response()->json($diaries);
 // }
+
+
 }
+
+
+
 
 
 

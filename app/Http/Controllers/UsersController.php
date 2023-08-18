@@ -68,7 +68,8 @@ class UsersController extends Controller
      */
     public function show($id)
     {
-        //
+        // $profile = User::find($id);
+        // return view('admin.profile.index')->with('profile', $profile);
     }
 
     /**

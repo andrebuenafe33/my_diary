@@ -16,7 +16,7 @@
     .btn:hover {
       transform: scale(1.10);
     }
-    </style>
+</style>
 
     <div class="card rounded-3">
 
