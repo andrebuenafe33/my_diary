@@ -26,7 +26,7 @@
 </script> --}}
 
 <script>
-    function confirmDelete(userId) {
+    function confirmDeleteDiary(userId) {
         Swal.fire({
             title: 'Are you sure?',
             text: "You won't be able to revert this!",
@@ -83,4 +83,39 @@
                 window.addEventListener('scroll', animateOnScroll);
                 animateOnScroll(); // Initial animation check
             });
-            </script>
+        </script>
+
+<script>
+      $(document).ready( function () {
+        $('#diary_myTable').DataTable({
+            initComplete: function(){
+                $('.dataTables_filter ').append('<a href="{{ route("diaries.create") }}" class="btn btn-sm btn-primary ml-3">New Diary</a>');
+            },
+            processing: true,
+            serverSide: true,
+            ajax: '{{ route('diaries.index') }}',
+            columns: [
+                {
+                    data: 'DT_RowIndex',
+                    name: 'index'
+                },
+                {
+                    data: 'action',
+                    name: 'action',
+                    orderable: false
+                },
+                {
+                    data: 'title',
+                    name: 'title'
+                },
+                {
+                    data: 'status',
+                    name: 'status'
+                },
+    
+            ],
+            "order": [[ 3, 'asc']]
+    
+        });
+    } );
+</script>

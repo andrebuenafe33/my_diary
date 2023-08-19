@@ -39,4 +39,4 @@ Route::middleware('checkRouteAccess')->group(function(){
     Route::resource('/approval-requests', ApprovalRequestsController::class);
 });
 
-Route::get('diaries/get', 'DiariesController@getDiaries')->name('diaries.get');
+// Route::get('diaries/get', 'DiariesController@getDiaries')->name('diaries.get');

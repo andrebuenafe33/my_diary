@@ -26,7 +26,7 @@
                             <div class="form-group">
                                 <input type="password" class="form-control form-control-user @error('password') is-invalid @enderror"
                                     id="exampleInputPassword" placeholder="Password"
-                                    name="password">
+                                    name="password" value="{{ old('password') }}">
                                 
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">

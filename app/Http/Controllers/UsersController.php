@@ -154,7 +154,7 @@ class UsersController extends Controller
                 ->addColumn('role', function($data){
                     $role = '';
                     if($data->role == 1){
-                        $role = '<span class="badge badge-primary">Administrator</span>';
+                        $role = '<span class="badge badge-success">Administrator</span>';
                     } else if($data->role == 2){
                         $role = '<span class="badge badge-warning">Supervisor</span>';
                     } else {

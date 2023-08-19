@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Diary;
 use App\Models\User;
 use Error;
+use DataTables;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -18,28 +19,28 @@ class DiariesController extends Controller
     public function index()
     {
 
-        $diaries = Diary::all();
-        return view('admin.diaries.index', compact('diaries'));
-        // if(request()->ajax())
-        // {
-        //     if(Auth::user()->role == 1){
-        //         $diaries = Diary::all();
-        //         return $this->generateDatatables($diaries);
-        //     } else if(Auth::user()->role == 2){
-        //         $supervisorId = Auth::user()->id;
+        // $diaries = Diary::all();
+        // return view('admin.diaries.index', compact('diaries'));
+        if(request()->ajax())
+        {
+            if(Auth::user()->role == 1){
+                $diaries = Diary::all();
+                return $this->generateDatatables($diaries);
+            } else if(Auth::user()->role == 2){
+                $supervisorId = Auth::user()->id;
 
-        //         $diaries = Diary::where(function ($query) use ($supervisorId) {
-        //             $query->where('supervisor_id', $supervisorId)
-        //                 ->orWhere('author_id', $supervisorId);
-        //         })->get();
-        //         return $this->generateDatatables($diaries);
-        //     } else {
-        //         $diaries = Diary::where('author_id','=',Auth::user()->id)->get();
-        //         return $this->generateDatatables($diaries);
-        //     }
-        // };
+                $diaries = Diary::where(function ($query) use ($supervisorId) {
+                    $query->where('supervisor_id', $supervisorId)
+                        ->orWhere('author_id', $supervisorId);
+                })->get();
+                return $this->generateDatatables($diaries);
+            } else {
+                $diaries = Diary::where('author_id','=',Auth::user()->id)->get();
+                return $this->generateDatatables($diaries);
+            }
+        };
 
-        // return view('admin.diaries.index');
+        return view('admin.diaries.index');
     }
 
     /**
@@ -69,7 +70,7 @@ class DiariesController extends Controller
                 'summary' => 'required',
                 'plantomorrow' => 'required',
                 'supervisor' => 'required'
-            ]);
+            ]); 
         
             $diary = Diary::create([
                 'plan_today' => $request->plantoday,
@@ -104,22 +105,7 @@ class DiariesController extends Controller
        
         $diary = Diary::findOrFail($id);
         return view('admin.diaries.show', compact('diary'));
-        // $diary = Diary::where('id','=',$id)->first();
-        // $user = User::where('id','=', $diary->author_id)->first();
-        // $date = $user->created_at->format('M d, Y');
-      
-        // $name = $user->name;
-        // $sup = User::where('id','=',$diary->supervisor_id)->first();
-        // $supervisor = $sup->name;
-        // $title = 'EOD Report by ' . $name . ' on ' . $date;
-        // $diary_details = [
-        //     'diary' => $diary,
-        //     'name' => $name,
-        //     'title' => $title,
-        //     'supervisor' => $supervisor,
-        //     // 'signature' => $sup->signature
-        // ];
-        // return view('admin.diaries.show')->with('diary',$diary_details);
+       
     }
 
     /**
@@ -131,8 +117,9 @@ class DiariesController extends Controller
     public function edit($id)
     {
         $diary = Diary::findOrFail($id);
-
-        return view('admin.diaries.edit')->with('diary',$diary);
+        $supervisors = User::where('role','=',2)->get();
+        
+        return view('admin.diaries.edit')->with(['diary' => $diary,'supervisors' => $supervisors,]);
     }
 
     /**
@@ -155,7 +142,7 @@ class DiariesController extends Controller
             ]);
 
             $diary = Diary::findOrFail($id);
-            // dd($request->input('todays-plan'));
+    
             $diary->update([
                 'plan_today' => $request->plantoday,
                 'end_today' => $request->eod,
@@ -168,10 +155,11 @@ class DiariesController extends Controller
             ]);
 
             $diaries = Diary::all();
+            // $diaries = Diary::with('supervisor')->get();
+            // $message = 'EOD Report has been updated!';
+            // 'success' =>$message]
 
-            return view('admin.diaries.index')->with([
-                'diaries'=>$diaries
-            ]);
+            return redirect('diaries')->with('diaries',$diaries);
             // return redirect()->route('success')->with('success', 'Data saved successfully!');
         } catch (ValidationException $e) {
             return redirect()->back()->withErrors($e->errors())->withInput();
@@ -204,7 +192,44 @@ class DiariesController extends Controller
 //     return response()->json($diaries);
 // }
 
-
+public function generateDatatables($request)
+{
+    return DataTables::of($request)
+            ->addIndexColumn()
+            ->addColumn('title', function($data){
+                $date = $data->created_at->format('F j, Y');
+                $author = User::where('id','=',$data->author_id)->first();
+                if(Auth::user()->role == 1 || Auth::user()->role == 2){
+                    return $title = 'EOD Report for '.$date.' by '.$author->name;
+                } else {
+                    return $title = 'EOD Report for '.$date;
+                }
+            })
+            ->addColumn('status', function($data){
+                $status = '';
+                if($data->status == 0){
+                    $status = '<span class="badge badge-danger">Pending</span>';                        
+                } else {
+                    $status = '<span class="badge badge-success">Approved</span>';
+                }
+                return $status;
+            })
+            ->addColumn('action', function($data){
+                $actionButtons = '<a href="'.route("diaries.show",$data->id).'" data-id="'.$data->id.'" class="btn btn-sm btn-primary">
+                                    <i class="fas fa-eye"></i>
+                                </a>
+                                <a href="'.route("diaries.edit",$data->id).'" data-id="'.$data->id.'" class="btn btn-sm btn-warning editDiary">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                                <button data-id="'.$data->id.'" class="btn btn-sm btn-danger" onclick="confirmDeleteDiary('.$data->id.')">
+                                <i class="fas fa-trash"></i>
+                                </button>';
+                return $actionButtons;
+            })
+            ->rawColumns(['action','status','title','author'])
+            ->make(true);
+           
+    }
 }
 
 
