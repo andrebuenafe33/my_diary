@@ -119,7 +119,7 @@ class UsersController extends Controller
     
             $users = User::all();
             
-            return view('admin.users.index')->with([
+            return redirect('users')->with([
                 'users'=>$users,
                 'user_name'=>$user->name
             ]);

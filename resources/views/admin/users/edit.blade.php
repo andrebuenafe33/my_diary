@@ -1,6 +1,23 @@
 @extends('admin.admin')
 
 @section('content')
+
+    <style>
+    /* Define the initial state of the button */
+    .btn {
+      padding: 5px 10px;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+    
+    /* Define the hover state */
+    .btn:hover {
+      transform: scale(1.10);
+    }
+    </style>
+
     <div class="card">
         <div class="card-header">
             Edit User

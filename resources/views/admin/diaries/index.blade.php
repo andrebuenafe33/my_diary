@@ -127,7 +127,7 @@
                 </table>
         </div>
     </div>
-
+   
 @include('admin.diaries.partials._scripts')
 @endsection
 

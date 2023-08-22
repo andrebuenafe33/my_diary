@@ -9,6 +9,7 @@ use DataTables;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+
 class DiariesController extends Controller
 {
     /**
@@ -119,7 +120,7 @@ class DiariesController extends Controller
         $diary = Diary::findOrFail($id);
         $supervisors = User::where('role','=',2)->get();
         
-        return view('admin.diaries.edit')->with(['diary' => $diary,'supervisors' => $supervisors,]);
+        return view('admin.diaries.edit')->with(['diary' => $diary,'supervisors' => $supervisors]);
     }
 
     /**
@@ -156,11 +157,13 @@ class DiariesController extends Controller
 
             $diaries = Diary::all();
             // $diaries = Diary::with('supervisor')->get();
-            // $message = 'EOD Report has been updated!';
-            // 'success' =>$message]
-
-            return redirect('diaries')->with('diaries',$diaries);
-            // return redirect()->route('success')->with('success', 'Data saved successfully!');
+            $message = 'EOD Report has been updated!';
+           
+            $diary = Diary::with(['author', 'supervisor'])->find($diary->$id);     
+            // return view('admin.diaries.index')->with(['diaries'=>$diaries]);
+            return redirect('diaries')->with(['diaries' => $diaries, 'success' =>$message]);
+            // return view('admin.diaries.index', ['diaries' => $diaries, 'success' =>$message]);
+            // return redirect('diaries')->with(['diaries' => $diaries]);
         } catch (ValidationException $e) {
             return redirect()->back()->withErrors($e->errors())->withInput();
         }
@@ -199,11 +202,23 @@ public function generateDatatables($request)
             ->addColumn('title', function($data){
                 $date = $data->created_at->format('F j, Y');
                 $author = User::where('id','=',$data->author_id)->first();
-                if(Auth::user()->role == 1 || Auth::user()->role == 2){
-                    return $title = 'EOD Report for '.$date.' by '.$author->name;
+                
+                // if(Auth::user()->role == 1 || Auth::user()->role == 2){
+                //     return $title = 'EOD Report for '.$date.' by '.$author->name;
+                // } else {
+                //     return $title = 'EOD Report for '.$date;
+                // }
+
+                if ($author) { // Check if $author is a valid object
+                    if(Auth::user()->role == 1 || Auth::user()->role == 2){
+                        return $title = 'EOD Report for '.$date.' by '.$author->name;
+                    } else {
+                        return $title = 'EOD Report for '.$date;
+                    }
                 } else {
-                    return $title = 'EOD Report for '.$date;
+                    return $title = 'EOD Report for '.$date; // Default title if author is not found
                 }
+                
             })
             ->addColumn('status', function($data){
                 $status = '';
