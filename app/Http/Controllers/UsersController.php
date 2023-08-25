@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use DataTables;
-use App\Models\User;
+use App\Mail\NewUserEmail;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use DataTables;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class UsersController extends Controller
 {
@@ -119,10 +121,7 @@ class UsersController extends Controller
     
             $users = User::all();
             
-            return redirect('users')->with([
-                'users'=>$users,
-                'user_name'=>$user->name
-            ]);
+            return redirect('users')->with(['users'=>$users,'user_name'=>$user->name]);
         } catch (ValidationException $e) {
             return redirect()->back()->withErrors($e->errors())->withInput();
         }

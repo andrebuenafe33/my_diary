@@ -11,7 +11,7 @@
             </div>
         </div>
         <div class="card-body">
-            <table class="table table-sm table-hover" id="approval-requests-datatable">
+            <table class="table table-sm table-hover" id="approval-requests-DataTable">
                 <thead>
                     <tr>
                     <th scope="col">#</th>
@@ -24,9 +24,19 @@
                 <tbody>
                 </tbody>
             </table>
-           
+            @if(isset($diaryApproved))
+                <div class="alert alert-success">
+                    {{ $diaryApproved }}
+                </div>
+            @elseif(isset($diaryRejected))
+                <div class="alert alert-danger">
+                    {{ $diaryRejected }}
+                </div>
+            @endif
         </div>
     </div>
-  
+    @include('admin.approval-requests.partials._approval-datatables-script')
+    @include('admin.approval-requests.partials._approval-scripts')
+
 
 @endsection

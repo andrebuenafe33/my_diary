@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Diary;
 use App\Models\User;
 use Error;
-use DataTables;
+use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -83,6 +83,20 @@ class DiariesController extends Controller
                 'supervisor_id' => $request->supervisor,
                 'status' => 0
             ]);
+            if($diary){
+                $trainee = User::where('id','=',$diary->author_id)->first();
+                $supervisor = User::where('id','=',$diary->supervisor_id)->first();
+                $diary = [
+                    'trainee' => $trainee->name,
+                    'supervisor' => $supervisor->name,
+                    'sup_email' => $supervisor->email,
+                    'url' => route('approval-requests.show',$diary->id),
+                ];
+                
+                // Mail::to($diary['sup_email'])->send(new NewDiaryEmail($diary));
+
+                // Notification::route('slack', config('notifications.slack_webhook'))->notify(new NewDiaryPosted($diary));
+            }
         
             $diaries = Diary::all();
         
@@ -104,10 +118,46 @@ class DiariesController extends Controller
     public function show($id)
     {
        
-        $diary = Diary::findOrFail($id);
-        return view('admin.diaries.show', compact('diary'));
+        // $diary = Diary::findOrFail($id);
+        // return view('admin.diaries.show', compact('diary'));
+        $diary = Diary::where('id','=',$id)->first();
+        $user = User::where('id','=',$diary->author_id)->first();
+        $date = $user->created_at->format('M d, Y');
+        $name = $user->name;
+        $sup = User::where('id','=',$diary->supervisor_id)->first();
+        $supervisor = $sup->name;
+        $title = 'EOD Report by ' . $name . ' on ' . $date;
+        $diary_details = [
+            'diary' => $diary,
+            'name' => $name,
+            'title' => $title,
+            'supervisor' => $supervisor,
+            'signature' => $sup->signature
+        ];
+        return view('admin.diaries.show')->with('diary',$diary_details);
        
     }
+    public function print($id)
+    {
+        // $diary = Diary::findOrFail($id);
+        // return view('admin.diaries.show', compact('diary'));
+        $diary = Diary::where('id','=',$id)->first();
+        $user = User::where('id','=',$diary->author_id)->first();
+        $date = $user->created_at->format('M d, Y');
+        $name = $user->name;
+        $sup = User::where('id','=',$diary->supervisor_id)->first();
+        $supervisor = $sup->name;
+        $title = 'EOD Report by ' . $name . ' on ' . $date;
+        $diary_details = [
+            'diary' => $diary,
+            'name' => $name,
+            'title' => $title,
+            'supervisor' => $supervisor,
+            'signature' => $sup->signature
+        ];
+        return view('admin.diaries.print')->with('diary',$diary_details);
+    }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -117,10 +167,13 @@ class DiariesController extends Controller
      */
     public function edit($id)
     {
-        $diary = Diary::findOrFail($id);
+        $diary = Diary::findOrFail($id); 
         $supervisors = User::where('role','=',2)->get();
         
-        return view('admin.diaries.edit')->with(['diary' => $diary,'supervisors' => $supervisors]);
+        return view('admin.diaries.edit')->with([
+            'diary' => $diary,
+            'supervisors' => $supervisors,
+        ]);
     }
 
     /**
@@ -132,7 +185,7 @@ class DiariesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        try {
+         try {
             $validatedData = $request->validate([
                 'plantoday' => 'required',
                 'eod' => 'required',
@@ -141,9 +194,9 @@ class DiariesController extends Controller
                 'plantomorrow' => 'required',
                 'supervisor' => 'required'
             ]);
-
-            $diary = Diary::findOrFail($id);
     
+            $diary = Diary::findOrFail($id);
+            
             $diary->update([
                 'plan_today' => $request->plantoday,
                 'end_today' => $request->eod,
@@ -152,18 +205,14 @@ class DiariesController extends Controller
                 'plan_tomorrow' => $request->plantomorrow,
                 'author_id' => Auth::user()->id,
                 'supervisor_id' => $request->supervisor,
-                'status' => 0
             ]);
-
+    
             $diaries = Diary::all();
-            // $diaries = Diary::with('supervisor')->get();
             $message = 'EOD Report has been updated!';
-           
-            $diary = Diary::with(['author', 'supervisor'])->find($diary->$id);     
-            // return view('admin.diaries.index')->with(['diaries'=>$diaries]);
-            return redirect('diaries')->with(['diaries' => $diaries, 'success' =>$message]);
-            // return view('admin.diaries.index', ['diaries' => $diaries, 'success' =>$message]);
-            // return redirect('diaries')->with(['diaries' => $diaries]);
+            
+            // return view('admin.diaries.index')->with(['diaries'=>$diaries,'success' => $message]);
+            return redirect('diaries')->with(['diaries'=>$diaries,'success' => $message]);
+            
         } catch (ValidationException $e) {
             return redirect()->back()->withErrors($e->errors())->withInput();
         }
