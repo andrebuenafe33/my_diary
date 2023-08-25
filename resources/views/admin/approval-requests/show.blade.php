@@ -23,7 +23,7 @@
                             <button class="btn btn-sm btn-success" onclick="approveDiary({{$diary['diary']->id}})">
                                 <i class="fas fa-check"></i> Approve
                             </button>
-                            @include('admin.approval-requests.partials._scripts')
+                            @include('admin.approval-requests.partials._approval-scripts')
                         @endif
                     @endif
                 </div>
@@ -64,7 +64,8 @@
             <p class="mt-5">Checked by:</p>
             <h5 class="mt-5 text-uppercase m-0">{{$diary['supervisor'] }}</h5>
             <p class="m-0">HTE Supervising Officer</p>
-            <p class="m-0">Date: {{ now()->format('md/y') }}</p>
+            <p class="m-0">Date: {{ now()->format('m/d/y') }}</p>
         </div>
     </div>
+   
 @endsection

@@ -1,4 +1,4 @@
-@extends('admin.print')
+@extends('layouts.print')
 
 @section('content')
     <div class="header-box py-3 border-bottom mb-3">

@@ -210,8 +210,8 @@ class DiariesController extends Controller
             $diaries = Diary::all();
             $message = 'EOD Report has been updated!';
             
-            return view('admin.diaries.index')->with(['diaries'=>$diaries,'success' => $message]);
-            // return redirect('diaries')->with(['diaries'=>$diaries,'success' => $message]);
+            // return view('admin.diaries.index')->with(['diaries'=>$diaries,'success' => $message]);
+            return redirect('diaries')->with(['diaries'=>$diaries,'success' => $message]);
             
         } catch (ValidationException $e) {
             return redirect()->back()->withErrors($e->errors())->withInput();

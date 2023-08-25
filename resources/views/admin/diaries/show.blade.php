@@ -151,7 +151,7 @@
         <img src="{{ asset('storage/'.$diary['signature']) }}" alt="Supervisor's Signature" width="15%" class="position-relative top-1 mt-5">
         <h5 class="text-uppercase mb-0">{{$diary['supervisor'] }}</h5>
         <p class="m-0">HTE Supervising Officer</p>
-        <p class="m-0">Date: {{ now()->format('md/y') }}</p>
+        <p class="m-0">Date: {{ now()->format('m/d/y') }}</p>
     </div>
 </div>
 
