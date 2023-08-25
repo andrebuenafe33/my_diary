@@ -83,20 +83,20 @@ class DiariesController extends Controller
                 'supervisor_id' => $request->supervisor,
                 'status' => 0
             ]);
-            if($diary){
-                $trainee = User::where('id','=',$diary->author_id)->first();
-                $supervisor = User::where('id','=',$diary->supervisor_id)->first();
-                $diary = [
-                    'trainee' => $trainee->name,
-                    'supervisor' => $supervisor->name,
-                    'sup_email' => $supervisor->email,
-                    'url' => route('approval-requests.show',$diary->id),
-                ];
+            // if($diary){
+            //     $trainee = User::where('id','=',$diary->author_id)->first();
+            //     $supervisor = User::where('id','=',$diary->supervisor_id)->first();
+            //     $diary = [
+            //         'trainee' => $trainee->name,
+            //         'supervisor' => $supervisor->name,
+            //         'sup_email' => $supervisor->email,
+            //         'url' => route('approval-requests.show',$diary->id),
+            //     ];
                 
                 // Mail::to($diary['sup_email'])->send(new NewDiaryEmail($diary));
 
                 // Notification::route('slack', config('notifications.slack_webhook'))->notify(new NewDiaryPosted($diary));
-            }
+            // }
         
             $diaries = Diary::all();
         
@@ -210,8 +210,8 @@ class DiariesController extends Controller
             $diaries = Diary::all();
             $message = 'EOD Report has been updated!';
             
-            // return view('admin.diaries.index')->with(['diaries'=>$diaries,'success' => $message]);
-            return redirect('diaries')->with(['diaries'=>$diaries,'success' => $message]);
+            return view('admin.diaries.index')->with(['diaries'=>$diaries,'success' => $message]);
+            // return redirect('diaries')->with(['diaries'=>$diaries,'success' => $message]);
             
         } catch (ValidationException $e) {
             return redirect()->back()->withErrors($e->errors())->withInput();
