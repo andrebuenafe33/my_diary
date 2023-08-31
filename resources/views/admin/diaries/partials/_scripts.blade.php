@@ -95,24 +95,10 @@
             serverSide: true,
             ajax: '{{ route('diaries.index') }}',
             columns: [
-                {
-                    data: 'DT_RowIndex',
-                    name: 'index'
-                },
-                {
-                    data: 'action',
-                    name: 'action',
-                    orderable: false
-                },
-                {
-                    data: 'title',
-                    name: 'title'
-                },
-                {
-                    data: 'status',
-                    name: 'status'
-                },
-    
+                {data: 'DT_RowIndex',name: 'index'},
+                {data: 'action',name: 'action',orderable: false},
+                {data: 'title',name: 'title'},
+                {data: 'status',name: 'status'},
             ],
             "order": [[ 3, 'asc']]
     

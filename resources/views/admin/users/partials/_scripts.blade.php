@@ -69,28 +69,11 @@
             serverSide: true,
             ajax: '{{ route('users.index') }}',
             columns: [
-                {
-                    data: 'DT_RowIndex',
-                    name: 'index'
-                },
-                {
-                    data: 'action',
-                    name: 'action',
-                    orderable: false
-                },
-                {
-                    data: 'name',
-                    name: 'name'
-                },
-                {
-                    data: 'email',
-                    name: 'email'
-                },
-                {
-                    data: 'role',
-                    name: 'role'
-                },
-    
+                {data: 'DT_RowIndex',name: 'index'},
+                {data: 'action',name: 'action',orderable: false},
+                {data: 'name',name: 'name'},
+                {data: 'email',name: 'email'},
+                {data: 'role',name: 'role'},
             ],
             "order": [[ 3, 'asc']]
     

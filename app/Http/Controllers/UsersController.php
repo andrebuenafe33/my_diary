@@ -64,8 +64,9 @@ class UsersController extends Controller
             ]);
     
             $users = User::all();
-            
-            return view('admin.users.index')->with('users',$users);
+            $message = "User Created Successfully!";
+
+            return view('admin.users.index')->with(['users'=>$users, 'success'=>$message]);
         } catch (ValidationException $e) {
             return redirect()->back()->withErrors($e->errors())->withInput();
         }
@@ -120,8 +121,9 @@ class UsersController extends Controller
             ]);
     
             $users = User::all();
-            
-            return redirect('users')->with(['users'=>$users,'user_name'=>$user->name]);
+            $message = "User '$user->name' Updated Successfully!";
+
+            return view('admin.users.index')->with(['users'=>$users,'user_name'=>$user->name, 'success'=>$message]);
         } catch (ValidationException $e) {
             return redirect()->back()->withErrors($e->errors())->withInput();
         }

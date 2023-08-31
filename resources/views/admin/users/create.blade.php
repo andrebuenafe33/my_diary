@@ -22,7 +22,7 @@
         <div class="card-header">
             New User
         </div>
-        <form action="{{route('users.store')}}" id="users-save" method="POST">
+        <form action="{{route('users.store')}}" id="users-save-form" method="POST">
             @csrf
             <div class="card-body">
                     <div class="form-row">
@@ -66,5 +66,5 @@
         </form>
     </div>
     </div>
-
+    
 @endsection

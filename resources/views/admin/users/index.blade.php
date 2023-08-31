@@ -3,21 +3,7 @@
 @section('content')
 
 
-<style>
-/* Define the initial state of the button */
-.btn {
-  padding: 5px 10px;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.3s ease;
-}
 
-/* Define the hover state */
-.btn:hover {
-  transform: scale(1.10);
-}
-</style>
 
 
     {{-- <div class="card">
@@ -93,7 +79,14 @@
                 </div> --}}
             </div>
         </div>
-        <div class="card-body p-1">
+        <div class="card-body ">
+
+          @if (isset($success))
+            <div class="alert alert-success mx-2">
+              {{ $success }}
+            </div>
+          @endif
+
             <table class="table table-sm table-hover table-striped mb-0" id="myDataTable">
               <thead>
                 <tr>

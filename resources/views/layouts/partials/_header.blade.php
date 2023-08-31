@@ -25,7 +25,7 @@
     <link rel="stylesheet" href="{{ asset('css/dropify.css') }}">
 
         <!-- this is Jquery -->
-    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="{{asset ('vendor/jquery/jquery.min.js')}}"></script>
     <!-- this is from JS Dropfiy -->
     <script src="{{ asset('js/dropify.js') }}"></script>
     <!-- This is from Lightbox -->
@@ -50,8 +50,8 @@
     <script src="https://cdn.tiny.cloud/1/u0ebksljpkfdocbxvgho44w8fhi8tww0bw78lg90ba5p8r2i/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
     
     <!-- This is from DataTables -->
-    <link rel="stylesheet" href="//cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
 </head>
 <body id="page-top">
     @php

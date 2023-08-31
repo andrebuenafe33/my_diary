@@ -200,7 +200,7 @@ class ApprovalRequestsController extends Controller
         return DataTables::of($request)
                 ->addIndexColumn()
                 ->addColumn('author', function($data){
-                    $author = '1';
+                    $author = '';
                     $name = User::where('id','=',$data->author_id)->first();
                     return $author = $name->name;
                 })

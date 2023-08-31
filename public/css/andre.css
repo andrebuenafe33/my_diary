@@ -1,27 +1,25 @@
+#wrapper .sidebar {
+    width: 20% !important;
+}
+#wrapper main {
+    width: 80% !important;
+    position: static;
+    background: #f8f9fc;
+}
+.sticky-footer {
+    position: absolute;
+    bottom: 0;
+    width: 80%;
+}
+#wrapper #content-wrapper {
+    height: 100vh;
+}
 
-        #wrapper .sidebar{
-            width: 20%!important;
-        }
-        #wrapper main{
-            width: 80%!important;
-            position: static;
-            background: #f8f9fc;
-        }
-        .sticky-footer{
-            position: absolute;
-            bottom: 0;
-            width: 80%;
-        }
-        #wrapper #content-wrapper{
-            height: 100vh;
-        }
+.sidebar-divider {
+    border: 2px solid floralwhite;
+    margin: 2px 0;
+}
 
-        .sidebar-divider {
-            border: 2px solid floralwhite;
-            margin: 2px 0;
-        }
-        
-        
 .scroll-to-top {
     position: fixed;
     bottom: 20px;
@@ -57,15 +55,6 @@
     }
 }
 
-/* Custom Css from DataTables */
-.dataTables_wrapper .dataTables_paginate .paginate_button {
-    padding: 0px !important;
-    margin: 0px !important;
-}
-div.dataTables_wrapper div.dataTables_length select {
-    width:50% !important;
-}
-
 /* Custom CSS from Sidebar Hover */
 /* Define the initial state of the navigation items */
 .nav-item {
@@ -80,4 +69,19 @@ div.dataTables_wrapper div.dataTables_length select {
 /* Define the active state */
 .nav-item.active {
     background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Button Hover Animation */
+/* Define the initial state of the button */
+.btn {
+    padding: 5px 10px;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.6s ease, transform 0.6s ease;
+}
+
+/* Define the hover state */
+.btn:hover {
+    transform: scale(1.1);
 }

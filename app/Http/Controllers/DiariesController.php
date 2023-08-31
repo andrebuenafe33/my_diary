@@ -99,10 +99,10 @@ class DiariesController extends Controller
             // }
         
             $diaries = Diary::all();
-        
+            $message = "EOD Report Has Been Created Successfully!";
             
             $diary = Diary::with(['author', 'supervisor'])->find($diary->id);            
-            return view('admin.diaries.index')->with('diaries',$diaries);
+            return view('admin.diaries.index')->with(['diaries'=>$diaries,'success'=>$message]);
             // return redirect()->route('success')->with('success', 'Data saved successfully!');
         } catch (ValidationException $e) {
             return redirect()->back()->withErrors($e->errors())->withInput();
@@ -208,10 +208,10 @@ class DiariesController extends Controller
             ]);
     
             $diaries = Diary::all();
-            $message = 'EOD Report has been updated!';
-            
-            // return view('admin.diaries.index')->with(['diaries'=>$diaries,'success' => $message]);
-            return redirect('diaries')->with(['diaries'=>$diaries,'success' => $message]);
+            $message = 'EOD Report Has Been Updated Successfully!';
+                 
+            return view('admin.diaries.index')->with(['diaries'=>$diaries,'success'=>$message]);
+            // return redirect('diaries')->with(['diaries'=>$diaries,'success' => $message]);
             
         } catch (ValidationException $e) {
             return redirect()->back()->withErrors($e->errors())->withInput();
