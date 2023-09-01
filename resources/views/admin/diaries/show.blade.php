@@ -147,7 +147,7 @@
         {!! $diary['diary']->summary !!}
         <hr>
         
-        <p class="mt-5">Checked by:</p>       
+        <p class="mt-0">Checked by:</p>       
         <img src="{{ asset('storage/'.$diary['signature']) }}" alt="Supervisor's Signature" width="15%" class="position-relative top-1 mt-5">
         <h5 class="text-uppercase mb-0">{{$diary['supervisor'] }}</h5>
         <p class="m-0">HTE Supervising Officer</p>
