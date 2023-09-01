@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
 
@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+
 
     <title>My Duty Diary - Login</title>
     <link rel="icon" type="image/x-icon" href="{{ asset('/images/books.ico') }}">
@@ -23,4 +24,4 @@
 
 </head>
 
-<body class="bg-gradient-dark">
+<body class="bg-gradient-dark" id="page-top">
