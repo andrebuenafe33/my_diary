@@ -19,9 +19,6 @@ class DiariesController extends Controller
      */
     public function index()
     {
-
-        // $diaries = Diary::all();
-        // return view('admin.diaries.index', compact('diaries'));
         if(request()->ajax())
         {
             if(Auth::user()->role == 1){
@@ -117,9 +114,6 @@ class DiariesController extends Controller
      */
     public function show($id)
     {
-       
-        // $diary = Diary::findOrFail($id);
-        // return view('admin.diaries.show', compact('diary'));
         $diary = Diary::where('id','=',$id)->first();
         $user = User::where('id','=',$diary->author_id)->first();
         $date = $user->created_at->format('M d, Y');
@@ -139,8 +133,6 @@ class DiariesController extends Controller
     }
     public function print($id)
     {
-        // $diary = Diary::findOrFail($id);
-        // return view('admin.diaries.show', compact('diary'));
         $diary = Diary::where('id','=',$id)->first();
         $user = User::where('id','=',$diary->author_id)->first();
         $date = $user->created_at->format('M d, Y');
