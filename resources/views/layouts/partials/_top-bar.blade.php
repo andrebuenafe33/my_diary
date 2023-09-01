@@ -20,7 +20,7 @@
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="mr-2 d-none d-lg-inline text-white-900 small">{{ Session::get('USERNAME') }}</span>
                 @if ( Session::get('USERIMG') == Null )
-                <img src="{{ asset('assets/images/user-placeholder.png') }}" alt="Profile Image Placeholder" class="img-profile rounded-circle">
+                <img src="{{ asset('/images/user-placeholder.png') }}" alt="Profile Image Placeholder" class="img-profile rounded-circle">
             @else 
                 <img class="img-profile rounded-circle" src="{{ asset('storage/'.Session::get('USERIMG')) }}">
             @endif     
