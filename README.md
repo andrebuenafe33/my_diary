@@ -1,4 +1,4 @@
-<p align="center"><a href="https://facebook.com/andre.buenafe.33/" target="_blank"><img src="{{asset('images/books.ico')}}" width="400"></a></p>
+<p align="center"><a href="https://facebook.com/andre.buenafe.33/" target="_blank"><img src="https://images.rawpixel.com/image_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIyLTA3L2pvYjk0OS0xNTUuanBn.jpg" width="250"></a></p>
 
 ## Duty Diary
 
@@ -6,15 +6,16 @@ Duty Diary is a web application for the Diary for the Interns and manage the tra
 
 ## Steps to run this system after cloning
 
--   run composer install
--   run cp .env.example. .env
--   run php artisan migrate
--   run php artisan db:seed --class=RolesSeeder
--   run php artisan db:seed --class=AdminSeeder
--   run npm install
--   run npm run dev
--   php artisan optimize
--   php artisan serve
+-   run `composer install`
+-   run `cp .env.example. .env`
+-   run `php artisan key:generate`
+-   run `php artisan migrate`
+-   run `php artisan db:seed --class=RolesSeeder`
+-   run `php artisan db:seed --class=AdminSeeder`
+-   run `npm install`
+-   run `npm run dev`
+-   php `artisan optimize`
+-   php `artisan serve`
 
 <!-- ## Laravel Sponsors
 
