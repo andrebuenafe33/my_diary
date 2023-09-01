@@ -79,7 +79,7 @@
                             confirmButtonText: 'Okay'
                             }).then((result) => {
                             if (result.isConfirmed) {
-                                $('#myDataTable').DataTable().ajax.reload();
+                                $('#diary_myTable').DataTable().ajax.reload();
                             }
                         })
 
