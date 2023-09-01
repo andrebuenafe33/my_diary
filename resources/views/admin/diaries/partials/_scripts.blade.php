@@ -1,30 +1,4 @@
-{{-- <script>
-    $(document).ready(function () {
-        $.ajax({
-            url: "{{ route('diaries.get') }}",
-            method: "GET",
-            dataType: "json",
-            success: function (data) {
-                var tableBody = $("#diaries-table tbody");
-                tableBody.empty();
-
-                $.each(data, function (index, diary) {
-                    var row = `<tr>
-                        <td>${index + 1}</td>
-                        <td>
-                            <a href="${diary.edit_route}">Edit</a> |
-                            <a href="${diary.delete_route}" class="delete-diary">Delete</a>
-                        </td>
-                        <td>${diary.title}</td>
-                        <td>${diary.status}</td>
-                    </tr>`;
-                    tableBody.append(row);
-                });
-            }
-        });
-    });
-</script> --}}
-
+{{-- 
 <script>
     function confirmDeleteDiary(userId) {
         Swal.fire({
@@ -64,7 +38,69 @@
             }
         });
     }
+</script> --}}
+<script>
+    function confirmDeleteDiary(id){
+        let userId = id;
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: 'btn btn-danger',
+                cancelButton: 'btn btn-secondary'
+            },
+            buttonsStyling: false
+        })
+
+        swalWithBootstrapButtons.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            imageUrl: "{{ asset("images/bin.png") }}",
+            imageHeight: 200,
+            showCancelButton: true,
+            confirmButtonText: 'Yes, delete it!',
+            cancelButtonText: 'Cancel.',
+            reverseButtons: false
+        }).then((result)=>{
+            if(result.isConfirmed){
+                $.ajax({
+                    url: `/diaries/${userId}`,
+                    type: 'DELETE',
+                    headers: {
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                        'Content-Type': 'application/json'
+                    },
+                    success: function(response) {
+                        Swal.fire({
+                            title: 'Deleted!',
+                            text: "User has been deleted.",
+                            icon: 'success',
+                            showCancelButton: false,
+                            confirmButtonColor: '#3085d6',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: 'Okay'
+                            }).then((result) => {
+                            if (result.isConfirmed) {
+                                $('#myDataTable').DataTable().ajax.reload();
+                            }
+                        })
+
+                    },
+                    error: function(error) {
+                        // Handle error response
+                        console.error('DELETE request failed:', error);
+                    }
+                });
+            } else {
+                result.dismiss == Swal.DismissReason.cancel;
+                swalWithBootstrapButtons.fire(
+                    'Oops...',
+                    'Something went wrong!',
+                    'error'
+                );
+            }
+        })
+    }
 </script>
+
  {{-- This is from animation for cards --}}
         {{-- Add an event listener to trigger animation on scroll --}}
         <script> 

@@ -2,7 +2,7 @@
 
 @section('content')
 <!-- Project Card Example -->
-<div class="card shadow mb-4">
+<div class="card shadow mb-4" id="dashboard-page">
     <div class="card-header py-3">
         <h6 class="m-0 font-weight-bold text-primary">Welcome to my Duty Diary Dashboard</h6>
     </div>
