@@ -12,7 +12,7 @@
             <div class="col-md-4 col-12 p-5">
                 @if (isset($profile))
                     @if ($profile->img == Null)
-                        <img src="{{ asset('assets/images/user-placeholder.png') }}" alt="Profile Image Placeholder" class="rounded-circle img-fluid item-hover" id="editProfilePic" data-id="{{$profile->id}}">    
+                        <img src="{{ asset('/images/user-placeholder.png') }}" alt="Profile Image Placeholder" class="rounded-circle img-fluid item-hover" id="editProfilePic" data-id="{{$profile->id}}">    
                     @else
                     <img src="{{ asset('storage/'.$profile->img) }}" alt="Profile Image Placeholder" class="rounded-circle img-fluid item-hover" id="editProfilePic" data-id="{{$profile->id}}">
                     @endif
