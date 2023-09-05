@@ -59,7 +59,8 @@ class UsersController extends Controller
                 'email' => $request->email,
                 'password' => Hash::make($request->input('temp-password')),
                 'isPicComplete' => 0,
-                'isSignatureComplete' => 0
+                'isSignatureComplete' => 0,
+                
             ]);
     
             $users = User::all();
@@ -189,7 +190,7 @@ class UsersController extends Controller
         if(request()->ajax()){
             try {            
                 $request->validate([
-                    'profilePic' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Validate the image file
+                    'profilePic' => 'required|image|mimes:jpeg,png,jpg,gif|max:10048', // Validate the image file
                 ]);
         
                 if ($request->hasFile('profilePic')) {
@@ -331,6 +332,6 @@ class UsersController extends Controller
             } catch (ValidationException $e) {
                 return redirect()->back()->withErrors($e->errors())->withInput();
             }
-        // }
+        
     }
 }

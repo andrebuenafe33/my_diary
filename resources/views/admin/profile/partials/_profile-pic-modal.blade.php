@@ -16,8 +16,8 @@
             </div>
             @method('PUT')
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-success" id="save-profile-pic">Save</button>
+                <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-success btn-sm" id="save-profile-pic">Save</button>
             </div>
         </form>
         </div>

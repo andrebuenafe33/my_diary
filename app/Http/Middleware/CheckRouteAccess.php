@@ -93,7 +93,7 @@ class CheckRouteAccess
                 'users.updateProfilePic',
                 'users.updateSignature',
                 'users.updateProfileName',
-                'users.updatePassword'
+                'users.updatePassword',
             ]))) {
                 $allowedRoles = [1, 2, 3];
             } elseif (in_array($currentRouteName, [                    
@@ -111,7 +111,7 @@ class CheckRouteAccess
                     'users.updateSignature',
                     'users.updateProfileName',
                     'users.show',
-                    'users.updatePassword'
+                    'users.updatePassword',
                 ])) {
                 $allowedRoles = [1, 2];
             } elseif (in_array($currentRouteName,[
@@ -125,7 +125,7 @@ class CheckRouteAccess
                     'approval-requests.print',
                     'approval-requests.approve',
                     'approval-requests.reject',
-                    'users.updatePassword'
+                    'users.updatePassword',
             ])) {
                 $allowedRoles = [1];
             }

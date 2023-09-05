@@ -46,7 +46,7 @@
                                 @if ($profile->signature == Null)
                                     <img src="{{ asset('/images/sign-placeholder.png') }}" alt="Profile Image Placeholder" class="rounded-circle img-fluid item-hover" id="editSignature" data-id="{{$profile->id}}">    
                                 @else
-                                    <img src="{{ asset('storage/'.$profile->signature) }}" alt="Profile Image Placeholder" class="rounded-circle img-fluid item-hover" id="editSignature" data-id="{{$profile->id}}" width="40%">    
+                                    <img src="{{ asset('storage/'.$profile->signature) }}" alt="Profile Image Placeholder" class="rounded-circle img-fluid item-hover" id="editSignature" data-id="{{$profile->id}}" width="50%">    
                                 @endif
                             </div>
                         @endif
