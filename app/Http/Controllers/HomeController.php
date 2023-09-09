@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use App\Models\User;
+use App\Models\Diary;
+use App\Models\Documentation;
+use App\Models\Role;
 
 class HomeController extends Controller
 {
@@ -26,6 +29,9 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $docCount = Documentation::count();
+        $diaryCount = Diary::count();
+        $userCount = User::count();
         if (Auth::check()) {
             $userName = Auth::user()->name;
             $userRole = Auth::user()->role;
@@ -67,6 +73,8 @@ class HomeController extends Controller
         }
 
 
-        return view('admin.dashboard');
+        return view('admin.dashboard', ['userCount' => $userCount, 
+        'diaryCount' => $diaryCount, 
+        'docCount' => $docCount]);
     }
 }
