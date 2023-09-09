@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="card">
-        <div class="card-header">
+        <div class="card-header" data-aos="zoom-in-left" data-aos-delay="100" data-aos-duration="500" data-aos-anchor-placement="bottom-bottom">
             <div class="row">
                 <div class="col-md-6 col-12">
                     <i class="fas fa-solid fa-book-open"></i>

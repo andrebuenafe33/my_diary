@@ -16,6 +16,9 @@
     <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
     <script src="//cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+
+    <!-- Animate On Screen -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
    
    
 
@@ -27,8 +30,13 @@
           toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
         });
       </script>
-      
-    
+
+      <!-- AOS Script -->
+          <script>
+            AOS.init();
+          </script>
+
+        
 
     
        
