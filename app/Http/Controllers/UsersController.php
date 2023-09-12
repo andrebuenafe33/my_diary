@@ -62,16 +62,16 @@ class UsersController extends Controller
                 'isSignatureComplete' => 0,
                 
             ]);
-            if($user){
-                $invite = [
-                    'user' => $user,
-                    'url' => route('login'),
-                    'pass' => $request->inputd('temp-password'),
-                    'invitedBy' => Auth::user()->name
-                ];
+            // if($user){
+            //     $invite = [
+            //         'user' => $user,
+            //         'url' => route('login'),
+            //         'pass' => $request->inputd('temp-password'),
+            //         'invitedBy' => Auth::user()->name
+            //     ];
 
-                Mail::to($request->mail)->send(new NewUserEmail($invite));
-            }
+            //     Mail::to($request->mail)->send(new NewUserEmail($invite));
+            // }
     
             $users = User::all();
             $message = "User Created Successfully!";
