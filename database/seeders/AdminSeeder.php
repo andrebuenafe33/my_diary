@@ -23,7 +23,8 @@ class AdminSeeder extends Seeder
             'name' => 'Admin Andre Buenafe',
             'email' => 'admin@example.com',
             'password' => Hash::make('admin231'), // Replace 'admin_password' with the actual password
-            'role' => 1, 
+            'role' => 1,
+            'created_at' => now(), 
         ]);
 
     }

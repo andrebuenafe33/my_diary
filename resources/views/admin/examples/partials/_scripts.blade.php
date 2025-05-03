@@ -1,11 +1,11 @@
 
 
-  <script>
+<!-- <script>
         function confirmDelete(id){
             let userId = id;
             const swalWithBootstrapButtons = Swal.mixin({
                 customClass: {
-                    confirmButton: 'btn btn-danger mr-2',
+                    confirmButton: 'btn btn-danger',
                     cancelButton: 'btn btn-secondary'
                 },
                 buttonsStyling: false
@@ -60,52 +60,36 @@
                 }
             })
         }
-</script>
+</script> -->
 
 
-{{-- This is from animation for cards --}}
-        {{-- Add an event listener to trigger animation on scroll --}}
-        <script> 
-            document.addEventListener('DOMContentLoaded', function() {
-                const animatedCards = document.querySelectorAll('.animated-card');
-            
-                function animateOnScroll() {
-                    animatedCards.forEach(card => {
-                        const rect = card.getBoundingClientRect();
-                        if (rect.top <= window.innerHeight && rect.bottom >= 0) {
-                            card.classList.add('animate');
-                        }
-                    });
-                }
-            
-                window.addEventListener('scroll', animateOnScroll);
-                animateOnScroll(); // Initial animation check
-            });
-            </script>
+
 
 <script>
     $(document).ready( function () {
-        $('#myDataTable').DataTable({
+        $('#exampleDataTable').DataTable({
             initComplete: function(){
-                $('.dataTables_filter ').append('<a href="{{ route("users.create") }}" class="btn btn-sm btn-primary ml-3">New User</a>');
+                $('.dataTables_filter ').append('<a href="{{ route("examples.create") }}" class="btn btn-sm btn-primary ml-3">New Example</a>');
             },
             processing: true,
             serverSide: true,
-            ajax: '{{ route('users.index') }}',
+            ajax: '{{ route('examples.index') }}',
             columns: [
                 {data: 'DT_RowIndex',name: 'index'},
+                {data: 'first_name',name: 'first_name'},
+                {data: 'middle_name',name: 'middle_name'},
+                {data: 'last_name',name: 'last_name'},
+                {data: 'contact_number',name: 'contact_number'},
+                {data: 'course',name: 'course'},
                 {data: 'action',name: 'action',orderable: false},
-                {data: 'name',name: 'name'},
-                {data: 'email',name: 'email'},
-                {data: 'role',name: 'role'},
             ],
-            "order": [[ 3, 'asc']]
+            "order": [[ 5, 'asc']]
     
         });
     } );
     </script>
- 
- <script>
+
+<script>
         document.addEventListener('DOMContentLoaded', function () {
             const alert = document.getElementById('success-alert');
             if (alert) {
@@ -117,3 +101,5 @@
             }
         });
 </script>
+
+

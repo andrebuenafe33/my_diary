@@ -1,50 +1,9 @@
-{{-- 
-<script>
-    function confirmDeleteDiary(userId) {
-        Swal.fire({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
-            showCancelButton: true,
-            imageUrl: "{{ asset("images/bin.png") }}",
-            imageHeight: 200,
-            confirmButtonColor: '#d33',
-            cancelButtonColor: '#005',
-            confirmButtonText: 'Yes, delete it!'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                // Send an AJAX request to delete the user
-                axios.delete(`/diaries/${userId}`)
-                    .then(response => {
-                        // Handle the success response from the server
-                        Swal.fire(
-                            'Deleted!',
-                            'Your file has been deleted.',
-                            'success'
-                        );
-                        // Optionally, you can update the UI or reload the page after successful deletion
-                        setTimeout(function(){
-                            location.reload();
-                        }, 2000);
-                         
-                    }) 
-                    .catch(error => {
-                        // Handle the error response from the server
-                        Swal.fire(
-                            'Error!',
-                            'An error occurred while deleting the user.',
-                            'error'
-                        );
-                    });
-            }
-        });
-    }
-</script> --}}
 <script>
     function confirmDeleteDiary(id){
         let userId = id;
         const swalWithBootstrapButtons = Swal.mixin({
             customClass: {
-                confirmButton: 'btn btn-danger',
+                confirmButton: 'btn mr-2 btn-danger',
                 cancelButton: 'btn btn-secondary'
             },
             buttonsStyling: false
@@ -71,7 +30,7 @@
                     success: function(response) {
                         Swal.fire({
                             title: 'Deleted!',
-                            text: "User has been deleted.",
+                            text: "Diary has been deleted.",
                             icon: 'success',
                             showCancelButton: false,
                             confirmButtonColor: '#3085d6',
@@ -101,26 +60,6 @@
     }
 </script>
 
- {{-- This is from animation for cards --}}
-        {{-- Add an event listener to trigger animation on scroll --}}
-        <script> 
-            document.addEventListener('DOMContentLoaded', function() {
-                const animatedCards = document.querySelectorAll('.animated-card');
-            
-                function animateOnScroll() {
-                    animatedCards.forEach(card => {
-                        const rect = card.getBoundingClientRect();
-                        if (rect.top <= window.innerHeight && rect.bottom >= 0) {
-                            card.classList.add('animate');
-                        }
-                    });
-                }
-            
-                window.addEventListener('scroll', animateOnScroll);
-                animateOnScroll(); // Initial animation check
-            });
-        </script>
-
 <script>
       $(document).ready( function () {
         $('#diary_myTable').DataTable({
@@ -142,6 +81,18 @@
     } );
 </script>
 
+<script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const alert = document.getElementById('success-alert');
+            if (alert) {
+                setTimeout(() => {
+                    alert.style.transition = "opacity 0.5s ease";
+                    alert.style.opacity = '0';
+                    setTimeout(() => alert.remove(), 500);
+                }, 2000);
+            }
+        });
+</script>
 
   
     

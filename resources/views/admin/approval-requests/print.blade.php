@@ -9,7 +9,7 @@
         </div>
         <div class="row pl-2">
             <div class="col-3">Company Name: </div>
-            <div class="col-9 font-weight-bold">CREATIVEDEVLABS (CDL INNOVATIVE IT SOLUTIONS)</div>
+            <div class="col-9 font-weight-bold">Andre Joseph Buenafe (Company Kuntahay Hehe)</div>
         </div>
         <div class="row pl-2">
             <div class="col-3">Diary Date: </div>

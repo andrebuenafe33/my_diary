@@ -71,5 +71,17 @@
      <!-- Divider -->
      <hr class="sidebar-divider">
     @endif
+
+     <!-- Nav Item - Users -->
+     <li class="nav-item 
+        {{ request()->is('examples') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('examples.index')}}">
+            <i class="fas fa-solid fa-users"></i>
+            <span>Example</span>
+        </a>
+    </li>
+     <!-- Divider -->
+     <hr class="sidebar-divider">
+
 </ul>
 <!-- End of Sidebar -->

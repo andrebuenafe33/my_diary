@@ -14,7 +14,7 @@ class AddIsPassChangedToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->integer('isPassChanged')->after('password')->nullable();
+            $table->integer('isPassChanged')->nullable()->after('password')->nullable();
         });
     }
 

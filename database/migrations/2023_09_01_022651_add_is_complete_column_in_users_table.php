@@ -14,8 +14,8 @@ class AddIsCompleteColumnInUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->boolean('isPicComplete')->after('signature');
-            $table->boolean('isSignatureComplete')->after('isPicComplete');
+            $table->boolean('isPicComplete')->nullable()->after('signature');
+            $table->boolean('isSignatureComplete')->nullable()->after('isPicComplete');
         });
     }
 

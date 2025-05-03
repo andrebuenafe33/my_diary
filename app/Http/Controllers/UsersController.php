@@ -76,7 +76,8 @@ class UsersController extends Controller
             $users = User::all();
             $message = "User Created Successfully!";
 
-            return view('admin.users.index')->with(['users'=>$users, 'success'=>$message]);
+            // return view('admin.users.index')->with(['users'=>$users, 'success'=>$message]);
+            return redirect()->route('users.index')->with('success', 'User Has Been Created Successfully!');
         } catch (ValidationException $e) {
             return redirect()->back()->withErrors($e->errors())->withInput();
         }
