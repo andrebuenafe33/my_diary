@@ -23,11 +23,16 @@ RUN composer install --no-dev --optimize-autoloader
 # Set Laravel's public/ as Apache's web root
 RUN sed -i 's|DocumentRoot /var/www/html|DocumentRoot /var/www/html/public|' /etc/apache2/sites-available/000-default.conf
 
+# Copy and make the startup script executable
+COPY docker-start.sh /usr/local/bin/docker-start.sh
+RUN chmod +x /usr/local/bin/docker-start.sh
+
 # Set correct permissions
 RUN chown -R www-data:www-data /var/www/html \
     && chmod -R 755 /var/www/html/storage /var/www/html/bootstrap/cache
 
-# Expose HTTP port only (Render handles HTTPS)
+# Expose HTTP port
 EXPOSE 80
 
-CMD ["apache2-foreground"]
+# Use custom startup script
+CMD ["docker-start.sh"]
