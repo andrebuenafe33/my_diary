@@ -11,24 +11,25 @@
             </div>
         </div>
         <div class="card-body ">
-
-        @if (session('success'))
-            <div class="alert alert-success mx-2" id="success-alert">
-                {{ session('success') }}
-            </div>
-        @endif
-            <table class="table table-sm table-hover table-striped" id="diary_myTable">
-                <thead>
-                    <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Action</th>
-                    <th scope="col">Title</th>
-                    <th scope="col">Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                </tbody>
+            @if (session('success'))
+                <div class="alert alert-success mx-2" id="success-alert">
+                    {{ session('success') }}
+                </div>
+            @endif
+            <div class="table-responsive">
+                <table class="table table-sm table-hover table-striped" id="diary_myTable">
+                    <thead>
+                        <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Action</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
                 </table>
+            </div>
         </div>
     </div>
    
