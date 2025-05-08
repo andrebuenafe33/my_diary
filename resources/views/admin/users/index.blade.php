@@ -14,26 +14,26 @@
             </div>
         </div>
         <div class="card-body ">
-
-        @if (session('success'))
-            <div class="alert alert-success mx-2" id="success-alert">
-                {{ session('success') }}
+            @if (session('success'))
+                <div class="alert alert-success mx-2" id="success-alert">
+                    {{ session('success') }}
+                </div>
+            @endif
+            <div class="table-responsive">
+                <table class="table table-sm table-hover table-striped mb-0" id="myDataTable">
+                    <thead>
+                        <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Action</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Role</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
             </div>
-        @endif
-
-            <table class="table table-sm table-hover table-striped mb-0" id="myDataTable">
-              <thead>
-                <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">Action</th>
-                  <th scope="col">Name</th>
-                  <th scope="col">Email</th>
-                  <th scope="col">Role</th>
-                </tr>
-              </thead>
-              <tbody>
-              </tbody>
-            </table>
         </div>
     </div>
 

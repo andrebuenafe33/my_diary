@@ -2,8 +2,8 @@
 <nav class="navbar navbar-expand navbar-secondary bg-gradient-dark topbar mb-4 static-top shadow">
 
     <!-- Sidebar Toggle (Topbar) -->
-    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-        <i class="fa fa-bars"></i>
+    <button id="sidebarToggleTop" class="btn btn-dark  rounded-circle mr-3">
+        <i class="fas fa-bars"></i>
     </button>
 
 
