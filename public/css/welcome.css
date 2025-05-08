@@ -1,0 +1,46 @@
+
+body {
+    font-family: 'Nunito', sans-serif;
+}
+
+h1 {
+    font-family: 'Orbitron', sans-serif;
+}
+
+.login-btn {
+    transition: all 0.3s ease-in-out;
+}
+
+.login-btn:hover {
+    background-color: #1a202c;
+    color: white;
+    transform: translateY(-3px) scale(1.05);
+}
+
+.fade-in {
+    animation: fadeInUp 1s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+    .animated-gradient {
+        background: linear-gradient(-45deg, #5c94b9, #070609, #ba0bd5, #ea2a2a);
+        background-size: 400% 400%;
+        animation: gradientBG 15s ease infinite;
+    }
+
+    @keyframes gradientBG {
+        0% {background-position: 0% 50%;}
+        50% {background-position: 100% 50%;}
+        100% {background-position: 0% 50%;}
+    }
