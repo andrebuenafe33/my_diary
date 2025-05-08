@@ -1,5 +1,5 @@
 <!-- Topbar -->
-<nav class="navbar navbar-expand navbar-secondary bg-gradient-dark topbar mb-4 static-top shadow">
+<nav class="TopBar navbar navbar-expand navbar-secondary bg-dark topbar mb-4 static-top shadow">
 
     <!-- Sidebar Toggle (Topbar) -->
     <button id="sidebarToggleTop" class="btn btn-dark  rounded-circle mr-3">
@@ -18,7 +18,7 @@
         <li class="nav-item dropdown no-arrow">
             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-white-900 small">{{ Session::get('USERNAME') }}</span>
+                <span class="mr-2 d-none d-lg-inline text-white-900 small text-white">{{ Session::get('USERNAME') }}</span>
                 @if ( Session::get('USERIMG') == Null )
                 <img src="{{ asset('/images/user-placeholder.png') }}" alt="Profile Image Placeholder" class="img-profile rounded-circle">
             @else 
