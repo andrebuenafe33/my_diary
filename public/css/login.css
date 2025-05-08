@@ -1,0 +1,68 @@
+body {
+    background: linear-gradient(135deg, #1f1c2c, #928dab);
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+
+.glass-card {
+    background: rgba(255, 255, 255, 0.1); /* translucent white */
+    backdrop-filter: blur(12px);          /* frosted glass effect */
+    -webkit-backdrop-filter: blur(12px);  /* for Safari */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* subtle border */
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);  /* strong shadow */
+    border-radius: 1rem;
+    color: #fff;
+}
+
+#Login-button {
+    transition: all 0.3s ease-in-out;
+}
+
+#Login-button:hover {
+    background-color: #1a202c;
+    color: white;
+    transform: translateY(-3px) scale(1.05);
+}
+
+.fade-in {
+    animation: fadeInUp 1s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+#particles-js {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+.animated-gradient {
+    background: linear-gradient(-45deg, #7c8c96, #070609, #55305b, #410e0e);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+}
+
+@keyframes gradientBG {
+    0% {background-position: 0% 50%;}
+    50% {background-position: 100% 50%;}
+    100% {background-position: 0% 50%;}
+}

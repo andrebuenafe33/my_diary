@@ -7,7 +7,9 @@
 
 <!-- Custom scripts for all pages-->
 <script src="{{ asset('js/sb-admin.min.js') }}"></script>
-
+ <!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+<script src="{{ asset('js/welcome.js') }}"></script>
 </body> 
 
 </html>

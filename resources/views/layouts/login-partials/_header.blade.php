@@ -21,7 +21,14 @@
 
     <!-- Custom styles for this template-->
     <link href="{{ asset('/css/sb-admin.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('/css/login.css') }}" rel="stylesheet">
 
 </head>
 
-<body class="bg-gradient-dark" id="page-top">
+<style>
+  
+</style>
+<body class="bg-gradient-dark animated-gradient" id="page-top">
+
+ <!-- Particles background container -->
+ <div id="particles-js"></div>
