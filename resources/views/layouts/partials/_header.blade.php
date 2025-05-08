@@ -40,6 +40,7 @@
 
     <!-- Custom styles for this template-->
     <link href="{{ asset('css/sb-admin.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/side-bar.css') }}" rel="stylesheet">
     <script src="https://kit.fontawesome.com/0371f381a6.js" crossorigin="anonymous"></script>
 
     <!-- This is CDN of Sweet alert -->

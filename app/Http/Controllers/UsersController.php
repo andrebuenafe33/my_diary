@@ -136,7 +136,8 @@ class UsersController extends Controller
             $users = User::all();
             $message = "User '$user->name' Updated Successfully!";
 
-            return view('admin.users.index')->with(['users'=>$users,'user_name'=>$user->name, 'success'=>$message]);
+            // return view('admin.users.index')->with(['users'=>$users,'user_name'=>$user->name, 'success'=>$message]);
+            return redirect()->route('users.index')->with('success', 'User Has Been Updated Successfully!');
         } catch (ValidationException $e) {
             return redirect()->back()->withErrors($e->errors())->withInput();
         }

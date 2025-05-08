@@ -20,22 +20,23 @@
                 {{ session('success') }}
             </div>
         @endif
-
-            <table class="table table-sm table-hover table-striped mb-0" id="exampleDataTable">
-              <thead>
-                <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">First Name</th>
-                  <th scope="col">Middle Name</th>
-                  <th scope="col">Last Name</th>
-                  <th scope="col">Contact Number</th>
-                  <th scope="col">Course</th>
-                  <th scope="col">Action</th>
-                </tr>
-              </thead>
-              <tbody>
-              </tbody>
-            </table>
+            <div class="table-responsive">
+                <table class="table table-sm table-hover table-striped mb-0" id="exampleDataTable">
+                    <thead>
+                        <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">First Name</th>
+                        <th scope="col">Middle Name</th>
+                        <th scope="col">Last Name</th>
+                        <th scope="col">Contact Number</th>
+                        <th scope="col">Course</th>
+                        <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
     
